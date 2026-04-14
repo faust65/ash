@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ash</title>
+</head>
+<body>
+    <input type="text" id="atk" style="width: 200px; height: 50px;"> <button onclick="send()" style="width: 100px; height: 50px">공격 판정</button><br>
+    <input type="text" id="min" style="width: 200px; height: 50px;"> <button onclick="send2()" style="width: 100px; height: 50px">회피 판정</button><br>
+    <input type="text" id="run" style="width: 200px; height: 50px;"> <button onclick="send3()" style="width: 100px; height: 50px">도주 판정</button>
+
+    <div class="plp" style="display: flex; justify-content:space-between; width: 200px; padding-top: 50px;">
+        <h2 id="re"></h2> <h2 id="dmg"></h2>
+    </div>
+
+    <script>
+        function send(){
+            const atk=document.getElementById('atk').value;
+            fetch('/atk',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({atk:atk})})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('re').innerText=data.result
+                document.getElementById('dmg').innerText=data.damage
+            })
+            .catch(error => {document.getElementById('re').innerText="오류"+error;})
+        }
+
+        function send2(){
+            const min=document.getElementById('min').value;
+            fetch('/min',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({min:min})})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('re').innerText=data.result
+                document.getElementById('dmg').innerText="-"
+            })
+            .catch(error => {document.getElementById('re').innerText="오류"+error;})
+        }
+
+        function send3(){
+            const run=document.getElementById('run').value;
+            fetch('/run',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({run:run})})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('re').innerText=data.result
+                document.getElementById('dmg').innerText="-"
+            })
+            .catch(error => {document.getElementById('re').innerText="오류"+error;})
+        }
+    </script>
+</body>
+</html>
