@@ -79,7 +79,7 @@ def run():
         damage="실패"
     elif((run==1 and g>30) or (run==2 and g>40) or (run==3 and g>50) or (run==4 and g>70) or (run==5 and g>80)):
         result=f"실패({g})"
-        damage-"실패"
+        damage="실패"
     elif((run==1 and g<=30) or (run==2 and g<=40) or (run==3 and g<=50) or (run==4 and g<=70) or (run==5 and g<=80)):
         result=f"보통 성공({g})"
         if((run==1 and g<=15) or (run==2 and g<=20) or (run==3 and g<=25) or (run==4 and g<=35) or (run==5 and g<=40)):
