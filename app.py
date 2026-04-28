@@ -40,7 +40,7 @@ def min():
     data=request.get_json()
     min=int(data.get('min', '0'))
     damage=10
-  
+    
     g=random.randrange(1, 101)
     
     if(g==1):
@@ -68,6 +68,7 @@ def min():
 def run():
     data=request.get_json()
     run=int(data.get('run', '0'))
+    damage="성공"
     
     g=random.randrange(1, 101)
     
@@ -75,8 +76,10 @@ def run():
         result=f"대성공({g})"
     elif(g==99 or g==100):
         result=f"대실패({g})"
+        damage="실패"
     elif((run==1 and g>30) or (run==2 and g>40) or (run==3 and g>50) or (run==4 and g>70) or (run==5 and g>80)):
         result=f"실패({g})"
+        damage-"실패"
     elif((run==1 and g<=30) or (run==2 and g<=40) or (run==3 and g<=50) or (run==4 and g<=70) or (run==5 and g<=80)):
         result=f"보통 성공({g})"
         if((run==1 and g<=15) or (run==2 and g<=20) or (run==3 and g<=25) or (run==4 and g<=35) or (run==5 and g<=40)):
@@ -84,7 +87,7 @@ def run():
             if((run==1 and g<=6) or (run==2 and g<=8) or (run==3 and g<=10) or (run==4 and g<=14) or (run==5 and g<=16)):
                 result=f"극단적 성공({g})"
         
-    return jsonify({'result':result})
+    return jsonify({'result':result,'damage':damage})
 
 if __name__ == '__main__':
 
